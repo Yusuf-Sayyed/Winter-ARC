@@ -109,18 +109,18 @@ export function IntroVideoSection() {
               )}
 
               {/* Video Element */}
-              <video
-                ref={videoRef}
-                autoPlay={!isMobile}
-                muted={isMuted}
-                loop
-                playsInline
-                preload="metadata"
-                poster={posterImage}
-                className="w-full h-auto object-cover relative z-10"
-                onLoadedData={() => setVideoLoaded(true)}
-                onCanPlay={() => setVideoLoaded(true)}
-              >
+            <video
+              ref={videoRef}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              poster={posterImage}
+              className="w-full h-auto object-cover relative z-10"
+              onLoadedData={() => setVideoLoaded(true)}
+              onCanPlay={() => setVideoLoaded(true)}
+            >
                 <source src={videoFile} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>

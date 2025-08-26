@@ -4,7 +4,6 @@ import { Dumbbell, Flame, Snowflake, ChevronLeft, ChevronRight, Copy, Check } fr
 import { SnowAnimation } from "../components/snow_animation";
 import { Navigation } from "../components/navigation";
 import { IntroVideoSection } from "../components/video_player";
-import { useLocation } from "wouter";
 import tojiImage from "../assets/tojiinGYM_1755205052057.jpeg";
 import tojiCard from "../assets/tojiCard.jpeg";
 import bakiImage from "../assets/baki.jpg";
@@ -16,7 +15,6 @@ import { HowToBuyWinterArc } from '../components/howtobuy';
 import { WinterArcCertificate } from '../components/contract_section'
 
 export default function Home() {
-  const [, setLocation] = useLocation();
   const [currentCard, setCurrentCard] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
@@ -28,6 +26,13 @@ export default function Home() {
       setTimeout(() => setIsCopied(false), 2000);
     });
   }, []);
+
+  const handleScrollToCertificate = () => {
+  const element = document.getElementById("winter-arc-certificate");
+  if (element) {
+    element.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+};
 
   const motivationCards = useMemo(
     () => [
@@ -67,9 +72,9 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [isMobile, motivationCards.length]);
 
-  const handleNavigateToChallenges = useCallback(() => {
-    setLocation("/challenges");
-  }, [setLocation]);
+<section id="winter-arc-certificate" className="mt-20">
+  <WinterArcCertificate />
+</section>
 
   const nextCard = () => {
     setCurrentCard((prev) => (prev + 1) % motivationCards.length);
@@ -144,7 +149,7 @@ export default function Home() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
             <Button
-              onClick={handleNavigateToChallenges}
+              onClick={handleScrollToCertificate}
               className=" bg-neutral-800 border border-neutral-800 text-neutral-400 hover:bg-neutral-900 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-orbitron font-bold text-sm sm:text-lg transform hover:scale-105 transition-all duration-300 w-full sm:w-auto"
             >
               <Dumbbell className="mr-2" />
@@ -166,9 +171,12 @@ export default function Home() {
         </motion.div>
 
         <HowToBuyWinterArc />
-      <section className="mt-20">
-        <WinterArcCertificate />
-      </section>
+
+        <section id="winter-arc-certificate" className="mt-20">
+          <WinterArcCertificate />
+        </section>
+
+
       <IntroVideoSection />
 
       </section>
@@ -290,13 +298,14 @@ export default function Home() {
 
           <div className="text-center">
             <Button
-              onClick={handleNavigateToChallenges}
-              className="bg-neutral-800 border border-neutral-800 text-neutral-400 hover:bg-neutral-900 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-orbitron font-bold text-sm sm:text-lg transform hover:scale-105 transition-all duration-300 w-full sm:w-auto"
+              disabled
+              className="bg-neutral-800 border border-neutral-800 text-neutral-500 cursor-not-allowed px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-orbitron font-bold text-sm sm:text-lg w-full sm:w-auto"
             >
               <Snowflake className="mr-2" />
-              VIEW WINTER CHALLENGES
+              COMING SOON
             </Button>
           </div>
+
         </div>
         <MotivationSection></MotivationSection>
       </section>

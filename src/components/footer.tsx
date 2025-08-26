@@ -2,7 +2,7 @@ import { FaXTwitter, FaTiktok, FaTelegram } from "react-icons/fa6";
 
   const socialLinks = [
     { href: "https://x.com/WinterArcOnSol", icon: <FaXTwitter />, label: "Twitter" },
-    { href: "https://www.tiktok.com/@winterarconsol", icon: <FaTiktok />, label: "TikTok" },
+    { href: "https://www.tiktok.com/@winterarc_coin", icon: <FaTiktok />, label: "TikTok" },
     { href: "https://t.me/WinterArcPortal", icon: <FaTelegram />, label: "Telegram" },
   ];
 export function Footer() {

@@ -13,22 +13,13 @@ export function Navigation() {
     setIsMenuOpen(false);
   }, [setLocation]);
 
-  // This function seems unused but is kept in case you need it later
-  // const scrollToSection = useCallback((sectionId: string) => {
-  //   const element = document.getElementById(sectionId);
-  //   if (element) {
-  //     element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  //   }
-  //   setIsMenuOpen(false);
-  // }, []);
-
   const toggleMenu = useCallback(() => {
     setIsMenuOpen(prev => !prev);
   }, []);
 
   const socialLinks = [
     { href: "https://x.com/WinterArcOnSol", icon: <FaXTwitter />, label: "Twitter" },
-    { href: "https://www.tiktok.com/@winterarconsol", icon: <FaTiktok />, label: "TikTok" },
+    { href: "https://www.tiktok.com/@winterarc_coin", icon: <FaTiktok />, label: "TikTok" },
     { href: "https://t.me/WinterArcPortal", icon: <FaTelegram />, label: "Telegram" },
   ];
 
