@@ -11,8 +11,8 @@ export function WinterArcCertificate() {
   const [username, setUsername] = useState("YourName");
   const [showShare, setShowShare] = useState(false);
 
-  // const today = new Date();
-  // const formattedDate = `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`;
+  const today = new Date();
+  const formattedDate = `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`;
 
   const handleDownload = async () => {
     if (!certificateRef.current) return;
@@ -28,18 +28,13 @@ export function WinterArcCertificate() {
     setShowShare(true);
   };
 
-  const handleShare = () => {
-    const text = encodeURIComponent(
-      `I just signed my contract for the ❄️ Winter Arc ❄️!\n\n#WinterArc`
-    );
-    const url = encodeURIComponent(
-      "https://x.com/i/communities/1942548949589430344"
-    );
-    window.open(
-      `https://twitter.com/intent/tweet?text=${text}&url=${url}`,
-      "_blank"
-    );
-  };
+      const handleShare = () => {
+        window.open(
+          "https://x.com/i/communities/1942548949589430344",
+          "_blank"
+        );
+      };
+
 
 
   return (
@@ -68,7 +63,7 @@ export function WinterArcCertificate() {
           >
             {/* CONTRACT OF PARTICIPATION */}
             <p
-              className="absolute font-montserrat font-semibold text-white"
+              className="contract-title absolute font-montserrat font-semibold text-white"
               style={{
                 left: "50%",
                 top: "7%",
@@ -85,7 +80,7 @@ export function WinterArcCertificate() {
 
             {/* $WINTER - html2canvas compatible version */}
             <h2
-              className="absolute font-['Clash_Display'] font-semibold"
+              className="winter-title absolute font-semibold"
               style={{
                 left: "50%",
                 top: "18%",
@@ -96,8 +91,8 @@ export function WinterArcCertificate() {
                 fontSize: "clamp(32px, 8vw, 72px)",
                 lineHeight: "clamp(40px, 10vw, 89px)",
                 textAlign: "center",
-                color: "linear-gradient(90deg, #FFFFFF 0%, #88FFFF 22.12%, #FFFFFF 66.83%, #88FFFF 100%)",
-                textShadow: "0px 0px 10px rgba(136, 255, 255, 0.5)",
+                fontFamily: "'Clash Display', sans-serif",
+                color: "#40E0D0",
               }}
             >
               $WINTER
@@ -105,16 +100,16 @@ export function WinterArcCertificate() {
 
             {/* ARC - html2canvas compatible version */}
             <h3
-              className="absolute font-['Clash_Display'] font-medium"
+              className="arc-title absolute font-medium"
               style={{
                 left: "50%",
-                top: "32%",
+                top: "29%",
                 transform: "translateX(-50%)",
                 fontSize: "clamp(20px, 5vw, 32px)",
                 textAlign: "center",
                 letterSpacing: "clamp(0.1em, 2vw, 0.37em)",
-                color: "linear-gradient(90deg, #FFFFFF 0%, #88FFFF 22.12%, #FFFFFF 66.83%, #88FFFF 100%)",
-                textShadow: "0px 0px 10px rgba(136, 255, 255, 0.5)",
+                fontFamily: "'Clash Display', sans-serif",
+                color: "#40E0D0",
               }}
             >
               ARC
@@ -123,7 +118,7 @@ export function WinterArcCertificate() {
 
             {/* This contract affirms that */}
             <p
-              className="absolute font-montserrat font-medium text-white"
+              className="contract-text absolute font-montserrat font-medium text-white"
               style={{
                 left: "50%",
                 top: "40%",
@@ -139,19 +134,20 @@ export function WinterArcCertificate() {
 
             {/* Name box */}
             <div
-              className="absolute bg-black/40 flex items-center justify-center font-bold text-white"
+              className="name-box absolute flex items-center justify-center font-bold"
               style={{
                 left: "50%",
                 top: "46%",
                 transform: "translateX(-50%)",
-                textShadow: "0px 0px 5.8px #000000",
                 width: "80%",
                 maxWidth: "341px",
                 height: "clamp(40px, 8vw, 60px)",
                 minHeight: "40px",
                 padding: "8px 16px",
-                fontSize: "clamp(16px, 3.5vw, 30px)",
+                fontSize: "clamp(16px, 3.5vw, 36px)",
                 borderRadius: "4px",
+                fontFamily: "'Clash Display', sans-serif",
+                color: "#40E0D0",
               }}
             >
               {username}
@@ -160,7 +156,7 @@ export function WinterArcCertificate() {
 
             {/* has signed... */}
             <p
-              className="absolute font-montserrat font-medium text-white"
+              className="signed-text absolute font-montserrat font-medium text-white"
               style={{
                 left: "50%",
                 top: "55%",
@@ -176,7 +172,7 @@ export function WinterArcCertificate() {
 
             {/* Date range */}
             <p
-              className="absolute font-montserrat font-medium text-neutral-400"
+              className="date-range absolute font-montserrat font-medium text-neutral-400"
               style={{
                 left: "50%",
                 top: "63%",
@@ -190,31 +186,46 @@ export function WinterArcCertificate() {
 
             {/* Signature line */}
             <div
-              className="absolute border-t border-white"
+              className="signature-line absolute border-t border-white"
               style={{
                 left: "50%",
-                top: "74%",
+                top: "78%",
                 transform: "translateX(-50%)",
                 width: "80%",
-              }}
-            />
-
-            {/* Signature */}
-            <p
-              className="absolute font-rockybilly uppercase text-neutral-400"
-              style={{
-                left: "50%",
-                top: "80%",
-                transform: "translateX(-50%)",
-                textShadow: "0px 0px 5.8px #000000",
-                width: "80%",
-                fontSize: "clamp(10px, 2vw, 14px)",
               }}
             >
-              {username}
-              <br />
-              Signature
+              {/* Signature on the line */}
+              <div
+                className="signature-text absolute font-dancing-script font-vibes"
+                style={{
+                  left: "50%",
+                  top: "-64px",
+                  transform: "translateX(-50%)",
+                  fontSize: "clamp(18px, 4vw, 42px)",
+                  color: "#40E0D0",
+                  fontWeight: "400",
+                  fontStyle: "normal",
+                }}
+              >
+                {username}
+              </div>
+
+            </div>
+
+            {/* Generated date */}
+            <p
+              className="generated-date absolute font-montserrat font-medium text-neutral-400"
+              style={{
+                left: "50%",
+                top: "85%",
+                transform: "translateX(-50%)",
+                textShadow: "0px 0px 5.8px #000000",
+                fontSize: "clamp(10px, 2vw, 16px)",
+              }}
+            >
+              GENERATED ON {formattedDate}
             </p>
+
           </div>
         </div>
         {/* Input + Buttons */}
@@ -224,6 +235,7 @@ export function WinterArcCertificate() {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             placeholder="Enter your desired name"
+            maxLength={16}
             className="flex-1 px-4 py-2 rounded bg-neutral-900 border border-neutral-700 text-neutral-200 w-full focus:outline-none focus:ring-2 focus:ring-neutral-600"
           />
           <Button

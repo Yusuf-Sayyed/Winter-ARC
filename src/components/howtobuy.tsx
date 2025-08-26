@@ -32,7 +32,7 @@ export function HowToBuyWinterArc() {
   How to buy $WINTER Arc
 </h2>
         <p className="text-lg sm:text-xl text-neutral-400 max-w-3xl mx-auto font-inter px-4">
-          Learn step by step how to purchase $WINTER Arc tokens safely and easily.
+          Learn, how to buy the $WINTER Arc Coin safely and easily.
         </p>
       </div>
 

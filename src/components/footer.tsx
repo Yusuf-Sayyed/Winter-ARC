@@ -19,7 +19,7 @@ export function Footer() {
             className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6"
             data-testid="footer-top-content"
           >
-            <span className="font-orbitron font-bold text-2xl">Winter ARC</span>
+            <span className="font-orbitron font-bold text-2xl bg-gradient-to-b from-neutral-400 to-neutral-500/60 bg-clip-text text-transparent">Winter ARC</span>
             <div className="flex items-center space-x-5">
               {socialLinks.map((social) => (
                 <a

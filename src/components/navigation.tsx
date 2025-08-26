@@ -40,9 +40,9 @@ export function Navigation() {
           <img
             src="/winterarclogo.png" // Use the correct path to your logo
             alt="Winter ARC Logo"
-            className="h-9 w-auto mr-3" // Adjust height, maintain aspect ratio, and add some right margin
+            className="h-9 w-auto mr-3 2xl:h-16" // Adjust height, maintain aspect ratio, and add some right margin
           />
-          <span className="font-orbitron font-bold text-xl text-neutral-400 transition-colors">
+          <span className="font-orbitron font-bold text-xl 2xl:text-4xl text-neutral-400 transition-colors">
             Winter ARC
           </span>
         </button>
@@ -59,7 +59,7 @@ export function Navigation() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors text-xl"
+                  className="text-gray-400 hover:text-white transition-colors text-xl 2xl:text-3xl"
                   aria-label={social.label}
                 >
                   {social.icon}

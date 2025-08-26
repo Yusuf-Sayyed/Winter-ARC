@@ -8,53 +8,60 @@
   }
 }
 
-.figma-embed-wrapper {
-  position: relative;
-  width: 800px;
-  height: 450px;
-  overflow: hidden;
-}
-
-.figma-embed-wrapper iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-/* Mask out bottom bar */
-.figma-embed-wrapper::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 50px; /* adjust until it covers the bar */
-  background: black; /* match your page background */
-}
 
 
-/* Force Twitter embeds to center & stretch */
-.twitter-tweet {
-  margin: 0 auto !important; /* center horizontally */
-  max-width: 100% !important;
-  width: 100% !important;
-}
+  @media (max-width: 640px) {
+    .contract-title {
+      top: 5% !important;
+      font-size: 12px !important;
+    }
+    .winter-title {
+      top: 12% !important;
+      font-size: 28px !important;
+    }
+    .arc-title {
+      top: 22% !important;
+      font-size: 18px !important;
+    }
+    .contract-text {
+      top: 32% !important;
+      font-size: 12px !important;
+    }
+    .name-box {
+      top: 38% !important;
+      font-size: 16px !important;
+      height: 35px !important;
+    }
+    .signed-text {
+      top: 48% !important;
+      font-size: 12px !important;
+    }
+    .date-range {
+      top: 58% !important;
+      font-size: 11px !important;
+    }
+    .signature-line {
+      top: 72% !important;
+    }
+    .signature-text {
+      top: -35px !important;
+      font-size: 20px !important;
+    }
+    .generated-date {
+      top: 82% !important;
+      font-size: 9px !important;
+    }
+  }
 
-.twitter-tweet iframe {
-  margin: 0 auto !important; /* center iframe */
-  max-width: 100% !important;
-  width: 100% !important;
-  display: block !important; /* remove inline spacing */
-}
-
-/* Additional centering for Twitter widget container */
-.twitter-tweet-rendered {
-  margin: 0 auto !important;
-  text-align: center !important;
-}
-
-/* Force center alignment on the Twitter widget */
-twitterwidget {
-  margin: 0 auto !important;
-  display: block !important;
-}
+  @media (max-width: 480px) {
+    .contract-title { top: 4% !important; font-size: 10px !important; }
+    .winter-title { top: 10% !important; font-size: 24px !important; }
+    .arc-title { top: 20% !important; font-size: 16px !important; }
+    .contract-text { top: 28% !important; font-size: 10px !important; }
+    .name-box { top: 34% !important; font-size: 14px !important; height: 30px !important; }
+    .signed-text { top: 44% !important; font-size: 10px !important; }
+    .date-range { top: 54% !important; font-size: 10px !important; }
+    .signature-line { top: 68% !important; }
+    .signature-text { top: -30px !important; font-size: 18px !important; }
+    .generated-date { top: 78% !important; font-size: 8px !important; }
+  }

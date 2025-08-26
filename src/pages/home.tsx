@@ -1,6 +1,6 @@
 import { useMemo, useCallback, useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Dumbbell, Flame, Snowflake, ChevronLeft, ChevronRight, Copy, Check } from "lucide-react";
+import { Flame, Snowflake, ChevronLeft, ChevronRight, Copy, Check } from "lucide-react";
 import { SnowAnimation } from "../components/snow_animation";
 import { Navigation } from "../components/navigation";
 import { IntroVideoSection } from "../components/video_player";
@@ -27,12 +27,12 @@ export default function Home() {
     });
   }, []);
 
-  const handleScrollToCertificate = () => {
-  const element = document.getElementById("winter-arc-certificate");
-  if (element) {
-    element.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-};
+//   const handleScrollToCertificate = () => {
+//   const element = document.getElementById("winter-arc-certificate");
+//   if (element) {
+//     element.scrollIntoView({ behavior: "smooth", block: "start" });
+//   }
+// };
 
   const motivationCards = useMemo(
     () => [
@@ -111,7 +111,7 @@ export default function Home() {
           transition={{ duration: 0.6 }}
         >
         <h1 className="font-orbitron font-black text-[49px] leading-tight md:text-[80px] lg:text-[96px] mb-4 sm:mb-6 bg-gradient-to-b from-neutral-400 to-neutral-500/60 bg-clip-text text-transparent">
-            WINTER ARC
+            $WINTER ARC
         </h1>
           <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-6 sm:mb-8 text-neutral-400 font-inter font-light px-4">
             Transform Your Body. Transform Your Mind.{" "}
@@ -127,7 +127,7 @@ export default function Home() {
           transition={{ duration: 0.6, delay: 0.15 }}
         >
           <div className="bg-neutral-950/50 border border-neutral-900 rounded-lg p-3 flex items-center justify-between gap-3 backdrop-blur-sm">
-            <p className="text-neutral-100 text-xs sm:text-sm xl:text-md 2xl:text-xl font-mono break-all flex-1">
+            <p className="text-neutral-100 text-xs sm:text-xl xl:text-xl 2xl:text-2xl font-mono break-all flex-1">
               4j2gUEmfbSAacvSSd6yXo8yEzXCAUVeoXrqLVV3apump
             </p>
             <Button
@@ -148,15 +148,15 @@ export default function Home() {
         </motion.div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-            <Button
+            {/* <Button
               onClick={handleScrollToCertificate}
               className=" bg-neutral-800 border border-neutral-800 text-neutral-400 hover:bg-neutral-900 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-orbitron font-bold text-sm sm:text-lg transform hover:scale-105 transition-all duration-300 w-full sm:w-auto"
             >
               <Dumbbell className="mr-2" />
               Sign the Contract
-            </Button>
+            </Button> */}
             <Button
-              className=" bg-neutral-800 border border-neutral-800 text-neutral-400 hover:bg-neutral-900 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-orbitron font-bold text-sm sm:text-lg transform hover:scale-105 transition-all duration-300 w-full sm:w-auto"
+              className=" bg-neutral-800 border border-neutral-800 text-neutral-400 hover:bg-neutral-900 px-6 sm:px-14 py-3 sm:py-6 rounded-lg font-orbitron font-bold text-sm sm:text-lg transform hover:scale-105 transition-all duration-300 w-70 sm:w-auto"
               onClick={() =>
                 window.open(
                   "https://x.com/i/communities/1942548949589430344",
