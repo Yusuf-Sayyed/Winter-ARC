@@ -1,13 +1,11 @@
 import { Switch, Route } from "wouter";
 import Home from "./pages/home";
-import Challenges from "./pages/challenges";
 import NotFound from "./pages/not-found";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
-      <Route path="/challenges" component={Challenges} />
       <Route component={NotFound} />
     </Switch>
   );

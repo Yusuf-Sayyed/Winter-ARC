@@ -3,13 +3,17 @@ import { motion } from "framer-motion";
 import { Dumbbell, Flame, Snowflake, ChevronLeft, ChevronRight, Copy, Check } from "lucide-react";
 import { SnowAnimation } from "../components/snow_animation";
 import { Navigation } from "../components/navigation";
-import { VideoPlayer } from "../components/video_player";
+import { IntroVideoSection } from "../components/video_player";
 import { useLocation } from "wouter";
 import tojiImage from "../assets/tojiinGYM_1755205052057.jpeg";
 import tojiCard from "../assets/tojiCard.jpeg";
 import bakiImage from "../assets/baki.jpg";
 import animeChar1 from "../assets/anime-char-1.jpeg";
 import { Button } from "../components/ui/button"
+import { MotivationSection } from "../components/motivation_section";
+import { Footer } from "../components/footer";
+import { HowToBuyWinterArc } from '../components/howtobuy';
+import { WinterArcCertificate } from '../components/contract_section'
 
 export default function Home() {
   const [, setLocation] = useLocation();
@@ -144,7 +148,7 @@ export default function Home() {
               className=" bg-neutral-800 border border-neutral-800 text-neutral-400 hover:bg-neutral-900 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-orbitron font-bold text-sm sm:text-lg transform hover:scale-105 transition-all duration-300 w-full sm:w-auto"
             >
               <Dumbbell className="mr-2" />
-              START YOUR ARC
+              Sign the Contract
             </Button>
             <Button
               className=" bg-neutral-800 border border-neutral-800 text-neutral-400 hover:bg-neutral-900 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-orbitron font-bold text-sm sm:text-lg transform hover:scale-105 transition-all duration-300 w-full sm:w-auto"
@@ -161,7 +165,11 @@ export default function Home() {
           </div>
         </motion.div>
 
-        <VideoPlayer isMobile={isMobile} />
+        <HowToBuyWinterArc />
+      <section className="mt-20">
+        <WinterArcCertificate />
+      </section>
+      <IntroVideoSection />
 
       </section>
 
@@ -290,6 +298,10 @@ export default function Home() {
             </Button>
           </div>
         </div>
+        <MotivationSection></MotivationSection>
+      </section>
+      <section className=" mt-12 sm:mt-2 relative z-2">
+      <Footer></Footer>
       </section>
     </div>
   );

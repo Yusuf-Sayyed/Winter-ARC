@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { Menu, Snowflake, X } from "lucide-react"; // Import X icon
+import { Menu, X } from "lucide-react"; // Import X icon
 import { useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion"; // For animations
 import { FaXTwitter, FaTiktok, FaTelegram } from "react-icons/fa6"; // Social Icons
@@ -40,32 +40,26 @@ export function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
-            <Snowflake className="text-gray-300 text-2xl mr-3" />
-            <button
-              onClick={() => navigateTo("/")}
-              className="font-orbitron font-bold text-xl text-neutral-400 transition-colors"
-              data-testid="logo"
-            >
-              Winter ARC
-            </button>
-          </div>
+      <div className="flex items-center">
+        <button
+          onClick={() => navigateTo("/")}
+          className="flex items-center" // Make the button a flex container for inline alignment
+          data-testid="logo"
+        >
+          <img
+            src="/winterarclogo.png" // Use the correct path to your logo
+            alt="Winter ARC Logo"
+            className="h-9 w-auto mr-3" // Adjust height, maintain aspect ratio, and add some right margin
+          />
+          <span className="font-orbitron font-bold text-xl text-neutral-400 transition-colors">
+            Winter ARC
+          </span>
+        </button>
+      </div>
+        </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <button
-              onClick={() => navigateTo("/")}
-              className="hover:text-gray-400 text-neutral-400 transition-colors font-inter"
-              data-testid="nav-home"
-            >
-              Home
-            </button>
-            <button
-              onClick={() => navigateTo("/challenges")}
-              className="hover:text-gray-400 text-neutral-400 transition-colors font-inter"
-              data-testid="nav-challenges"
-            >
-              Challenges
-            </button>
             {/* Desktop Socials */}
             <div className="flex items-center space-x-5">
               {socialLinks.map((social) => (
@@ -110,20 +104,6 @@ export function Navigation() {
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
             <div className="px-4 pt-4 pb-6 space-y-3">
-              <button
-                onClick={() => navigateTo("/")}
-                className="block w-full text-left px-4 py-3 text-neutral-400 rounded-lg bg-neutral-700/50 hover:bg-neutral-900/50 transition-colors"
-                data-testid="mobile-nav-home"
-              >
-                Home
-              </button>
-              <button
-                onClick={() => navigateTo("/challenges")}
-                className="block w-full text-left px-4 py-3 text-neutral-400 rounded-lg bg-neutral-700/50 hover:bg-neutral-900/50 transition-colors"
-                data-testid="mobile-nav-challenges"
-              >
-                Challenges
-              </button>
               {/* Mobile Socials */}
               <div className="pt-4 flex justify-center space-x-6">
                 {socialLinks.map((social) => (
