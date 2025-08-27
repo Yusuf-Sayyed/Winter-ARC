@@ -17,40 +17,74 @@ export function WinterArcCertificate() {
   const handleDownload = async () => {
     if (!certificateRef.current) return;
 
+    // Get device pixel ratio for high-quality rendering
+    const devicePixelRatio = window.devicePixelRatio || 1;
+    
+    // Use consistent high-quality scale for all devices
+    const baseScale = 2;
+    const scale = baseScale * devicePixelRatio;
+    
+    // Get the actual dimensions of the certificate container
+    const rect = certificateRef.current.getBoundingClientRect();
+    const containerWidth = rect.width;
+    const containerHeight = rect.height;
+
     // Capture the full certificate
     const originalCanvas = await html2canvas(certificateRef.current, {
-      scale: 2,
+      scale: scale,
       useCORS: true,
-      backgroundColor: null, // Keep background transparent
+      backgroundColor: null,
+      width: containerWidth,
+      height: containerHeight,
+      windowWidth: containerWidth,
+      windowHeight: containerHeight,
     });
 
-    // Create a cropped canvas (1193x1700)
+    // Use consistent target dimensions for all devices
+    const targetAspectRatio = 1193 / 1700; // Original aspect ratio
+    const targetWidth = 1193;
+    const targetHeight = 1700;
+    
+    // Calculate scaling to fit the target dimensions while maintaining aspect ratio
+    const scaleX = originalCanvas.width / targetWidth;
+    const scaleY = originalCanvas.height / targetHeight;
+    const finalScale = Math.min(scaleX, scaleY);
+    
+    // Calculate final dimensions maintaining aspect ratio
+    const finalWidth = targetWidth * finalScale;
+    const finalHeight = targetHeight * finalScale;
+
+    // Create a cropped canvas with calculated dimensions
     const croppedCanvas = document.createElement("canvas");
     const ctx = croppedCanvas.getContext("2d");
     if (!ctx) return;
 
-    croppedCanvas.width = 1193;
-    croppedCanvas.height = 1700;
+    croppedCanvas.width = targetWidth;
+    croppedCanvas.height = targetHeight;
 
-    // Calculate crop starting point (center crop)
-    const sourceX = (originalCanvas.width - 1193) / 2;
-    const sourceY = (originalCanvas.height - 1700) / 2;
+    // Calculate crop starting point (center crop from scaled canvas)
+    const sourceX = Math.max(0, (originalCanvas.width - finalWidth) / 2);
+    const sourceY = Math.max(0, (originalCanvas.height - finalHeight) / 2);
+    
+    // Draw the image scaled and cropped to exact target dimensions
+    ctx.fillStyle = 'transparent';
+    ctx.fillRect(0, 0, targetWidth, targetHeight);
 
     ctx.drawImage(
       originalCanvas,
       sourceX,
       sourceY,
-      1193,
-      1700,
+      finalWidth,
+      finalHeight,
       0,
       0,
-      1193,
-      1700
+      targetWidth,
+      targetHeight
     );
 
     // Download cropped image
     const link = document.createElement("a");
-    link.href = croppedCanvas.toDataURL("image/png");
+    link.href = croppedCanvas.toDataURL("image/png", 1.0);
     link.download = "winter-arc-certificate.png";
     link.click();
 
