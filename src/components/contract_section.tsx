@@ -40,21 +40,24 @@ export function WinterArcCertificate() {
       windowHeight: containerHeight,
     });
 
-    // Use consistent target dimensions for all devices
-    const targetAspectRatio = 1193 / 1700; // Original aspect ratio
-    const targetWidth = 1193;
-    const targetHeight = 1700;
+    // Determine if we're on mobile
+    const isMobile = window.innerWidth < 768;
     
-    // Calculate scaling to fit the target dimensions while maintaining aspect ratio
-    const scaleX = originalCanvas.width / targetWidth;
-    const scaleY = originalCanvas.height / targetHeight;
-    const finalScale = Math.min(scaleX, scaleY);
+    // Set target dimensions based on device
+    let targetWidth, targetHeight;
     
-    // Calculate final dimensions maintaining aspect ratio
-    const finalWidth = targetWidth * finalScale;
-    const finalHeight = targetHeight * finalScale;
+    if (isMobile) {
+      // For mobile, use the actual aspect ratio of the container to avoid cropping
+      const containerAspectRatio = containerWidth / containerHeight;
+      targetWidth = 800; // Reasonable mobile width
+      targetHeight = Math.round(targetWidth / containerAspectRatio);
+    } else {
+      // For desktop, use standard dimensions
+      targetWidth = 1193;
+      targetHeight = 1700;
+    }
 
-    // Create a cropped canvas with calculated dimensions
+    // Create final canvas with target dimensions
     const croppedCanvas = document.createElement("canvas");
     const ctx = croppedCanvas.getContext("2d");
     if (!ctx) return;
@@ -62,20 +65,17 @@ export function WinterArcCertificate() {
     croppedCanvas.width = targetWidth;
     croppedCanvas.height = targetHeight;
 
-    // Calculate crop starting point (center crop from scaled canvas)
-    const sourceX = Math.max(0, (originalCanvas.width - finalWidth) / 2);
-    const sourceY = Math.max(0, (originalCanvas.height - finalHeight) / 2);
-    
-    // Draw the image scaled and cropped to exact target dimensions
+    // Fill with transparent background
     ctx.fillStyle = 'transparent';
     ctx.fillRect(0, 0, targetWidth, targetHeight);
 
+    // Draw the entire original canvas scaled to fit the target dimensions
     ctx.drawImage(
       originalCanvas,
-      sourceX,
-      sourceY,
-      finalWidth,
-      finalHeight,
+      0,
+      0,
+      originalCanvas.width,
+      originalCanvas.height,
       0,
       0,
       targetWidth,
