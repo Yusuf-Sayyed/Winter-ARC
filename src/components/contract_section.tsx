@@ -17,45 +17,66 @@ export function WinterArcCertificate() {
   const handleDownload = async () => {
     if (!certificateRef.current) return;
 
-    // Capture the full certificate
-    const originalCanvas = await html2canvas(certificateRef.current, {
-      scale: 2,
-      useCORS: true,
-      backgroundColor: null, // Keep background transparent
-    });
+      await document.fonts.ready; // make sure fonts are loaded
+      const originalCanvas = await html2canvas(certificateRef.current, {
+        scale: window.devicePixelRatio * 2,
+        useCORS: true,
+        backgroundColor: null,
+        removeContainer: true,
+      });
 
-    // Create a cropped canvas (1193x1700)
-    const croppedCanvas = document.createElement("canvas");
-    const ctx = croppedCanvas.getContext("2d");
-    if (!ctx) return;
 
-    croppedCanvas.width = 1193;
-    croppedCanvas.height = 1700;
+    // ---- Smart Crop (all sides, stricter alpha cutoff) ----
+    const smartCrop = (canvas: HTMLCanvasElement) => {
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return canvas;
 
-    // Calculate crop starting point (center crop)
-    const sourceX = (originalCanvas.width - 1193) / 2;
-    const sourceY = (originalCanvas.height - 1700) / 2;
+      const w = canvas.width;
+      const h = canvas.height;
+      const imageData = ctx.getImageData(0, 0, w, h).data;
 
-    ctx.drawImage(
-      originalCanvas,
-      sourceX,
-      sourceY,
-      1193,
-      1700,
-      0,
-      0,
-      1193,
-      1700
-    );
+      let minX = w, minY = h, maxX = 0, maxY = 0;
+
+      const threshold = 50; // stricter cutoff for semi-transparent pixels
+
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          const alpha = imageData[(y * w + x) * 4 + 3];
+          if (alpha > threshold) {
+            if (x < minX) minX = x;
+            if (y < minY) minY = y;
+            if (x > maxX) maxX = x;
+            if (y > maxY) maxY = y;
+          }
+        }
+      }
+
+      const croppedWidth = maxX - minX + 1;
+      const croppedHeight = maxY - minY + 1;
+
+      const croppedCanvas = document.createElement("canvas");
+      croppedCanvas.width = croppedWidth;
+      croppedCanvas.height = croppedHeight;
+
+      croppedCanvas
+        .getContext("2d")!
+        .drawImage(canvas, minX, minY, croppedWidth, croppedHeight, 0, 0, croppedWidth, croppedHeight);
+
+      return croppedCanvas;
+    };
+
+    // Apply smart crop
+    const finalCanvas = smartCrop(originalCanvas);
 
     // Download cropped image
     const link = document.createElement("a");
-    link.href = croppedCanvas.toDataURL("image/png");
+    link.href = finalCanvas.toDataURL("image/png", 1.0);
     link.download = "winter-arc-certificate.png";
     link.click();
 
-  setShowShare(true);
-};
+    setShowShare(true);
+  };
+
 
 
   const handleShare = () => {
